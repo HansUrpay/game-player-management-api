@@ -33,6 +33,13 @@ export class MatchesService {
       });
       if (!hostPlayer) throw new NotFoundException('Player not found');
 
+      // Validar si el jugador tiene la ubicación actulizada en su perfil
+      if (!hostPlayer.location) {
+        throw new InternalServerErrorException(
+          'Player location not updated, please update your profile',
+        );
+      }
+
       const { sport } = createMatchDto;
       const playersNeeded = this.getPlayersNeeded(sport);
 

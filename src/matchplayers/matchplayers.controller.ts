@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MatchplayersService } from './matchplayers.service';
 import { CreateMatchplayerDto } from './dto/create-matchplayer.dto';
 import { UpdateMatchplayerDto } from './dto/update-matchplayer.dto';
+import { ApiExcludeController } from '@nestjs/swagger';
 
+@ApiExcludeController()
 @Controller('matchplayers')
 export class MatchplayersController {
   constructor(private readonly matchplayersService: MatchplayersService) {}

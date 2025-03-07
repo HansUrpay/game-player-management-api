@@ -24,11 +24,6 @@ export class Player {
   email: string;
 
   @Column({
-    select: false,
-  })
-  password: string;
-
-  @Column({
     length: 50,
   })
   name: string;

@@ -1,5 +1,5 @@
 import { MatchPlayer } from 'src/matchplayers/entities/matchplayer.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { MatchWinner } from '../enums/match-winner.enum';
 import { Sport } from '../enums/sport.enum';
 
@@ -33,4 +33,7 @@ export class Match {
     nullable: true,
   })
   scoreTeam2: number;
+
+  @DeleteDateColumn()
+  deletedAt: Date
 }
