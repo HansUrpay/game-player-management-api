@@ -55,7 +55,8 @@ export class MatchesService {
         // Si no se completaron los jugadores, poner al anfitrion en espera e indicar los jugadores restantes
         return {
           status: 'Waiting for players',
-          playersNeeded: playersNeeded - (compatiblePlayers.length + 1),
+          playersMissing: playersNeeded - (compatiblePlayers.length + 1),
+          availablePlayers: compatiblePlayers.length + 1,
         };
       }
     } catch (error) {
@@ -231,6 +232,7 @@ export class MatchesService {
     playersNeeded: number,
   ) {
     const [longitude, latitude] = hostPlayer.coordinates.coordinates;
+    const searchRadiusKm = 200;
 
     // Buscar jugadores cercanos y con ranking compatible
     const compatiblePlayers = await this.playerRepository
@@ -244,11 +246,11 @@ export class MatchesService {
         `ST_DistanceSphere(
         p.coordinates,
         ST_SetSRID(ST_MakePoint(:longitude, :latitude), 4326)
-      ) <= :radius`,
+      ) / 1000 <= :radius`,
         {
           longitude,
           latitude,
-          radius: 5000,
+          radius: searchRadiusKm,
         },
       )
       .orderBy('RANDOM()')
