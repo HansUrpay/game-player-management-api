@@ -15,7 +15,12 @@ Esta API facilita la organización de partidas deportivas y la evolución del ni
 Antes de iniciar, tener instalados los siguientes requisitos en tu sistema:
 
 - [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
-- [PostgreSQL](https://www.postgresql.org/) u otra base de datos compatible
+- [PostgreSQL](https://www.postgresql.org/) con PostGIS habilitado u otra base de datos compatible
+
+> ⚠️ **Importante**: Este proyecto usa PostGIS. Asegúrate de que esté instalado y habilitado en tu base de datos PostgreSQL.
+Para verificar si está instalado, ejecuta: 
+`SELECT postgis_full_version();`. Si no lo está, actívalo con:
+`CREATE EXTENSION postgis;` o instalalo desde [PostGIS](https://download.osgeo.org/postgis/windows/)
 
 ## 📥 Instalación
 
